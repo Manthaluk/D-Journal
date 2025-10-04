@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Home - Daily Journal</title>
+    <meta name="description" content="Your personal diary dashboard - write, organize, and reflect on your daily experiences.">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="home-page">
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-header">
+            <img src="logo.png" alt="Daily Journal Logo" class="menu-logo">
+            <h3>Daily Journal</h3>
+        </div>
+        <ul class="menu-items">
+            <li><a href="home.html" class="menu-item active">🏠 Home</a></li>
+            <li><a href="mood-tracker.html" class="menu-item">😊 Mood Tracker</a></li>
+            <li><a href="settings.html" class="menu-item">⚙️ Settings</a></li>
+            <li><a href="#" class="menu-item" onclick="logout()">🚪 Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="header-content">
+                <h1>Welcome back, <span id="userName">User</span>!</h1>
+                <p class="date-display" id="currentDate"></p>
+            </div>
+        </header>
+
+        <div class="entries-container">
+            <div class="entries-header">
+                <h2>Your Journal Entries</h2>
+                <div class="entries-count">
+                    <span id="entriesCount">0</span> entries
+                </div>
+            </div>
+            
+            <div id="entriesList" class="entries-list">
+                <!-- Entries will be dynamically loaded here -->
+            </div>
+            
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon">📝</div>
+                <h3>No entries yet</h3>
+                <p>Start writing your first journal entry by clicking the + button below</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Add Button -->
+    <div class="floating-add-btn" onclick="showAddEntry()">
+        <span>+</span>
+    </div>
+
+    <!-- Add Entry Modal -->
+    <div id="addEntryModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">New Entry</h3>
+                <button class="back-btn" onclick="closeAddEntry()">← Back</button>
+            </div>
+            <div class="modal-body">
+                <form id="entryForm">
+                    <div class="input-group">
+                        <input type="text" id="entryTitle" placeholder="Entry Title" required>
+                    </div>
+                    
+                    <div class="editor-toolbar">
+                        <button type="button" class="toolbar-btn" onclick="formatText('bold')" title="Bold">
+                            <strong>B</strong>
+                        </button>
+                        <button type="button" class="toolbar-btn" onclick="formatText('italic')" title="Italic">
+                            <em>I</em>
+                        </button>
+                        <button type="button" class="toolbar-btn" onclick="formatText('insertUnorderedList')" title="Bullet List">
+                            • List
+                        </button>
+                        <button type="button" class="toolbar-btn" onclick="formatText('uppercase')" title="Uppercase">
+                            ABC
+                        </button>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div id="entryContent" class="rich-editor" contenteditable="true" placeholder="Write your thoughts here..."></div>
+                    </div>
+                    
+                    <button type="submit" class="save-btn">Save Entry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Entry Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3 id="previewTitle">Entry Preview</h3>
+                <div class="preview-actions">
+                    <button class="edit-btn" onclick="editEntry()">✏️ Edit</button>
+                    <button class="close-btn" onclick="closePreview()">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="preview-meta">
+                    <span id="previewDate"></span>
+                </div>
+                <div id="previewContent" class="preview-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script defer src="./firebase-config.js"></script>
+
+    <script defer src="./script.js"></script>
+</body>
+</html>

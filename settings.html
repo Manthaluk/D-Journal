@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Settings - Daily Journal</title>
+    <meta name="description" content="Customize your Daily Journal experience with personalized settings and preferences.">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="settings-page">
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-header">
+            <img src="logo.png" alt="Daily Journal Logo" class="menu-logo">
+            <h3>Daily Journal</h3>
+        </div>
+        <ul class="menu-items">
+            <li><a href="home.html" class="menu-item">🏠 Home</a></li>
+            <li><a href="mood-tracker.html" class="menu-item">😊 Mood Tracker</a></li>
+            <li><a href="settings.html" class="menu-item active">⚙️ Settings</a></li>
+            <li><a href="#" class="menu-item" onclick="logout()">🚪 Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="header-content">
+                <h1>Settings</h1>
+                <p>Customize your Daily Journal experience</p>
+            </div>
+        </header>
+
+        <div class="settings-container">
+            <!-- Profile Settings -->
+            <div class="settings-section">
+                <h2>👤 Profile Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <label for="displayName">Display Name</label>
+                        <input type="text" id="displayName" placeholder="Enter your display name">
+                    </div>
+                    <div class="setting-item">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail" placeholder="Your email address" readonly>
+                    </div>
+                    <div class="setting-item">
+                        <label for="profileGender">Gender</label>
+                        <select id="profileGender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <button class="save-btn" onclick="saveProfile()">Save Profile</button>
+                </div>
+            </div>
+
+            <!-- Appearance Settings -->
+            <div class="settings-section">
+                <h2>🎨 Appearance</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <label for="themeSelect">Theme</label>
+                        <select id="themeSelect" onchange="changeTheme()">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="auto">Auto (System)</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="fontSize">Font Size</label>
+                        <select id="fontSize" onchange="changeFontSize()">
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Settings -->
+            <div class="settings-section">
+                <h2>🔒 Privacy & Security</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="autoSave" checked>
+                            <span class="toggle-slider"></span>
+                            Auto-save entries
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="moodReminders">
+                            <span class="toggle-slider"></span>
+                            Daily mood reminders
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <button class="change-password-btn" onclick="showChangePassword()">
+                            Change Password
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Management -->
+            <div class="settings-section">
+                <h2>📊 Data Management</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <button class="export-btn" onclick="exportData()">
+                            📤 Export My Data
+                        </button>
+                        <p class="setting-description">Download all your journal entries and mood data</p>
+                    </div>
+                    <div class="setting-item">
+                        <button class="delete-account-btn" onclick="showDeleteAccount()">
+                            🗑️ Delete Account
+                        </button>
+                        <p class="setting-description">Permanently delete your account and all data</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Change Password</h3>
+                <span class="close-btn" onclick="closeChangePassword()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="changePasswordForm">
+                    <div class="input-group">
+                        <input type="password" id="currentPassword" placeholder="Current Password" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="newPassword" placeholder="New Password" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="confirmNewPassword" placeholder="Confirm New Password" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Update Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script defer src="./firebase-config.js"></script>
+
+    <script defer src="./script.js"></script>
+</body>
+</html>

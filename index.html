@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Daily Journal - Your Personal Diary</title>
+    <meta name="description" content="Daily Journal - A beautiful, secure personal diary to capture your thoughts, memories, and daily experiences.">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="logo-section">
+            <img src="logo.png" alt="Daily Journal Logo" class="logo">
+            <h1>Daily Journal</h1>
+            <p>Your personal space for thoughts and memories</p>
+        </div>
+        
+        <div class="login-form">
+            <h2>Welcome Back</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <i class="input-icon">📧</i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="input-icon">🔒</i>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            
+            <button class="forgot-password-btn" onclick="showForgotPassword()">Forgot Password?</button>
+            
+            <div class="signup-link">
+                <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <span class="close-btn" onclick="closeForgotPassword()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address and we'll send you a reset link.</p>
+                <form id="forgotPasswordForm">
+                    <div class="input-group">
+                        <input type="email" id="resetEmail" placeholder="Email Address" required>
+                        <i class="input-icon">📧</i>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Reset Link</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script defer src="./firebase-config.js"></script>
+
+    <script defer src="./script.js"></script>
+</body>
+</html>

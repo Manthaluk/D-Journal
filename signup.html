@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Sign Up - Daily Journal</title>
+    <meta name="description" content="Create your Daily Journal account and start documenting your life's beautiful moments.">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="signup-page">
+    <div class="signup-container">
+        <div class="logo-section">
+            <img src="logo.png" alt="Daily Journal Logo" class="logo">
+            <h1>Daily Journal</h1>
+            <p>Start your journey today</p>
+        </div>
+        
+        <div class="signup-form">
+            <h2>Create Account</h2>
+            <form id="signupForm">
+                <div class="input-group">
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <i class="input-icon">👤</i>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="signupEmail" placeholder="Email Address" required>
+                    <i class="input-icon">📧</i>
+                </div>
+                <div class="input-group">
+                    <select id="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not-to-say">Prefer not to say</option>
+                    </select>
+                    <i class="input-icon">⚧</i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupPassword" placeholder="Password" required>
+                    <i class="input-icon">🔒</i>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    <i class="input-icon">🔒</i>
+                </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            
+            <div class="login-link">
+                <p>Already have an account? <a href="index.html">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script defer src="./firebase-config.js"></script>
+
+    <script defer src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Mood Tracker - Daily Journal</title>
+    <meta name="description" content="Track your daily moods and emotions with our beautiful mood tracker interface.">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body class="mood-page">
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+    </div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <div class="menu-header">
+            <img src="logo.png" alt="Daily Journal Logo" class="menu-logo">
+            <h3>Daily Journal</h3>
+        </div>
+        <ul class="menu-items">
+            <li><a href="home.html" class="menu-item">🏠 Home</a></li>
+            <li><a href="mood-tracker.html" class="menu-item active">😊 Mood Tracker</a></li>
+            <li><a href="settings.html" class="menu-item">⚙️ Settings</a></li>
+            <li><a href="#" class="menu-item" onclick="logout()">🚪 Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="header-content">
+                <h1>Mood Tracker</h1>
+                <p>How are you feeling today?</p>
+            </div>
+        </header>
+
+        <div class="mood-container">
+            <div class="mood-selector">
+                <h2>Select Your Mood</h2>
+                <div class="mood-grid">
+                    <div class="mood-item" data-mood="excellent" onclick="selectMood('excellent', '😄')">
+                        <div class="mood-emoji">😄</div>
+                        <span>Excellent</span>
+                    </div>
+                    <div class="mood-item" data-mood="good" onclick="selectMood('good', '😊')">
+                        <div class="mood-emoji">😊</div>
+                        <span>Good</span>
+                    </div>
+                    <div class="mood-item" data-mood="okay" onclick="selectMood('okay', '😐')">
+                        <div class="mood-emoji">😐</div>
+                        <span>Okay</span>
+                    </div>
+                    <div class="mood-item" data-mood="sad" onclick="selectMood('sad', '😢')">
+                        <div class="mood-emoji">😢</div>
+                        <span>Sad</span>
+                    </div>
+                    <div class="mood-item" data-mood="angry" onclick="selectMood('angry', '😠')">
+                        <div class="mood-emoji">😠</div>
+                        <span>Angry</span>
+                    </div>
+                    <div class="mood-item" data-mood="anxious" onclick="selectMood('anxious', '😰')">
+                        <div class="mood-emoji">😰</div>
+                        <span>Anxious</span>
+                    </div>
+                </div>
+                
+                <div class="mood-note">
+                    <textarea id="moodNote" placeholder="Add a note about your mood (optional)..." rows="3"></textarea>
+                </div>
+                
+                <button id="saveMoodBtn" class="save-mood-btn" onclick="saveMood()" disabled>
+                    Save Today's Mood
+                </button>
+            </div>
+
+            <div class="mood-history-section">
+                <div class="history-header">
+                    <h2>Mood History</h2>
+                    <button class="history-toggle-btn" onclick="toggleMoodHistory()">
+                        View History
+                    </button>
+                </div>
+                
+                <div id="moodHistory" class="mood-history">
+                    <!-- Mood history will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script defer src="./firebase-config.js"></script>
+
+    <script defer src="./script.js"></script>
+</body>
+</html>
